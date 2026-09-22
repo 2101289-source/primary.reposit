@@ -3,6 +3,7 @@
 // 09/21/26
 
 
+
 async function setup() {
   createCanvas(windowWidth, windowHeight);
 }
@@ -12,16 +13,27 @@ async function setup() {
 //the third will be a candy wonderland 
 function draw() {
   background("skyblue");
-
-
-  //test point
-  circle(0,0,500,);
-  fill("lightyellow");
+//sun
+  fill("lightyellow")
   stroke("white");
-  //ok that works
-  //this is the sun of the first world 
+  circle(0,0,500,);
 
-  triangle(600,600,600,200, 660, 250);
+
+  //grass
+  fill("green");
+  noStroke();
+  rect(0,870,windowWidth,300);
+
+  //suns face
+  fill("yellow");
+  stroke("gold")
+  triangle(200,75, 160,20, 130,75);
+
+  triangle(3,75, 40,20, 70,75);
+
+
+  
+
 
 
 }
