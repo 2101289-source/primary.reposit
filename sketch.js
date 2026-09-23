@@ -14,8 +14,8 @@ async function setup() {
 function draw() {
   background("skyblue");
 //sun
-  fill("lightyellow")
-  stroke("white");
+  fill("yellow")
+  stroke("black");
   circle(0,0,500,);
 
 
@@ -24,12 +24,12 @@ function draw() {
   noStroke();
   rect(0,870,windowWidth,300);
 
-  //suns face
+  //suns rays
   fill("yellow");
-  stroke("gold")
-  triangle(200,75, 160,20, 130,75);
+  stroke("black")
+  triangle(250,1, 305,40, 235,75);
+  triangle(227,105, 260,180, 180,170);
 
-  triangle(3,75, 40,20, 70,75);
 
 
   
