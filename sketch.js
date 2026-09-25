@@ -29,6 +29,7 @@ function draw() {
 
   //suns rays
   fill("yellow");
+<<<<<<< HEAD
   stroke("black");
   triangle(250,1,305,40, 235,75);
   triangle(227,105, 260,180, 180,170);
@@ -41,6 +42,12 @@ function draw() {
   circle(40,80,35);
   circle(150,80,35);
   triangle(120,120, 90,160, 60,120);
+=======
+  stroke("black")
+  triangle(250,1, 305,40, 235,75);
+  triangle(227,105, 260,180, 180,170);
+
+>>>>>>> b6681ce5f16e139bf7a0a63e5dcaf34d983c47b6
 
   //clouds
 
