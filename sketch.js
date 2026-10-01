@@ -138,6 +138,8 @@ function draw() {
   circle(bunnyX, 795,5);
   fill("hotpink");
   triangle(bunnyX-5,780, bunnyX,790, bunnyX + 5,780);
+  triangle(195,780, 200,790, 205,780);
+
 
 
   
