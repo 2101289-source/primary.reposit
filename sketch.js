@@ -9,9 +9,8 @@
 
 
 //VARIABLES
-
 let bunnyX = 200;
-let bunnyspeed = 5;
+let bunnySpeed = 5;
 
 // -------- FUNCTION SETUPS -----------------
 
@@ -24,6 +23,27 @@ async function setup() {
 //third bg will be a sunset gradient
 
 
+
+function bunnyMove(){
+
+  if (keyIsDown(RIGHT_ARROW)){
+    bunnyX += 5
+  }
+
+  if (keyIsDown(LEFT_ARROW)){
+    bunnyX -= 5
+  }
+
+  if(bunnyX > width){
+    bunnyX = 0;
+  }
+
+  if (bunnyX < 0){
+    bunnyX = width;
+  }
+
+  }
+  
 // -------- MAIN DRAWING ---------
 
 function draw() {
@@ -33,7 +53,7 @@ function draw() {
 //sun
   fill("yellow");
   stroke("black");
-  circle(0,0,500,);
+  circle(0,0,500);
 
 
   //suns rays
@@ -94,41 +114,35 @@ function draw() {
 
   // ----------- bunny character!! --------------
 
+  bunnyMove();
+
   //ears
   fill("white");
   stroke("grey");
-  ellipse(180,745,40,100);
-  ellipse(220,745,40,100);
+  ellipse(bunnyX - 20,745,40,100);
+  ellipse(bunnyX + 20,745,40,100);
   noStroke();
 
   //body
-  circle(200,780,80);
+  
+  circle(bunnyX,780,80);
   stroke("grey");
-  circle(159, 830,30); //this is the tail
+  circle(bunnyX - 41, 830,30); //this is the tail
   noStroke(); //thats why theres a noStroke() afterwards
-  circle(200,835,70); //because its hiding behind the body
+  circle(bunnyX,835,70); //because its hiding behind the body
 
   //face
   fill("black");
-  circle(185,775,15);
-  circle(215,775,15);
-  circle(200, 795,5);
+  circle(bunnyX - 15,775,15);
+  circle(bunnyX + 15,775,15);
+  circle(bunnyX, 795,5);
   fill("hotpink");
-  triangle(195,780, 200,790, 205,780);
+  triangle(bunnyX-5,780, bunnyX,790, bunnyX + 5,780);
 
 
-
-
-
-
-
+  
   //character is gonna be a bunny that moves with the L and R arrows
 
-
-
-
-
-
-
-
+//test point again
+//ive used multiple computers its kinda weird
 }
