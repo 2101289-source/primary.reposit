@@ -11,15 +11,15 @@
 // GLOBAL VARIABLES
 let bunnyX = 200;
 
+let sunColour = "yellow";
+
 // -------- FUNCTION SETUPS-----------------
 async function setup() {
   createCanvas(windowWidth, windowHeight);
 }
-
 //plan- first bg will be a normal sunny day.
 //second bg will be a golden hour gradient
 //third bg will be a sunset gradient
-
 function bunnyMove(){
   if (keyIsDown(RIGHT_ARROW)){
     bunnyX += 5;
@@ -37,7 +37,24 @@ function bunnyMove(){
     bunnyX = width;
   }
 
+  }
+
+function mouseClicked(){
+  let sunDistance = dist(mouseX, mouseY, 0,0);
+  if(sunDistance < 250){
+      sunColour = "gold;"
+  }
+  else if(sunColour == "gold"){
+    sunColour = "orange";
+  }
+  else{
+    sunColour = "yellow";
+  }
+
+
+
 }
+
 
 // -------------- MAIN DRAWING ----------------
 function draw() {
@@ -54,11 +71,11 @@ function draw() {
 
 //SUN PORTION
 function drawSun(){
-  fill("yellow");
+  fill(sunColour);
   stroke("black");
   circle(0,0,500);
   //suns rays
-  fill("yellow");
+  fill(sunColour);
   stroke("black");
   triangle(250,1,305,40, 235,75);
   triangle(227,105, 260,180, 180,170);
@@ -115,7 +132,6 @@ function drawClouds(){
 
   //cloud movement code goes here..?
   //once again out of time, clouds will stay stationary
-
 }
 
 // BUNNY CHARACTER PORTION
@@ -145,7 +161,6 @@ function drawBunny(){
 //acheived!
 
 //BACKROUND DRAWING CHARACTERISTICS (i cant spell)
-
 
 
 //SIGNATURE PORTION
