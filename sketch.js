@@ -10,11 +10,6 @@
 
 // GLOBAL VARIABLES
 let bunnyX = 200;
-let bunnySpeed = 5;
-
-let xcloud1 = 480;
-let xcloud2 = 620;
-let xcloud3 = 850;
 
 // -------- FUNCTION SETUPS-----------------
 async function setup() {
@@ -52,9 +47,11 @@ function draw() {
   drawClouds();
   bunnyMove();
   drawBunny();
+  drawName();
 }
 
 // -------------- MAIN  DRAW FUNCTIONS ------------------
+
 //SUN PORTION
 function drawSun(){
   fill("yellow");
@@ -77,11 +74,13 @@ function drawSun(){
   noStroke();
 }
 //I plan on having the suns face move up and down in an idle
+//nvm thats not happening its too late.
+
 //GRASS PORTION
 function drawGrass(){
   fill("green");
   noStroke();
-  rect(0,870,windowWidth,300);
+  rect(0, 870,windowWidth,300);
 
 }
 
@@ -115,6 +114,7 @@ function drawClouds(){
   circle(890,105,60);
 
   //cloud movement code goes here..?
+  //once again out of time, clouds will stay stationary
 
 }
 
@@ -123,25 +123,36 @@ function drawBunny(){
   //ears
   fill("white");
   stroke("grey");
-  ellipse(bunnyX - 20,745,40,100);
-  ellipse(bunnyX + 20,745,40,100);
+  ellipse(bunnyX - 20, 745,40,100);
+  ellipse(bunnyX + 20, 745,40,100);
   noStroke();
   //body
-  circle(bunnyX,780,80);
+  circle(bunnyX, 780, 80);
   stroke("grey");
-  circle(bunnyX - 41, 830,30); //this is the tail
+  circle(bunnyX - 41,830,30); //this is the tail
   noStroke(); //thats why theres a noStroke() afterwards
-  circle(bunnyX,835,70); //because its hiding behind the body
+  circle(bunnyX, 835,70); //because its hiding behind the body
   //face
   fill("black");
-  circle(bunnyX - 15,775,15);
-  circle(bunnyX + 15,775,15);
+  circle(bunnyX - 15, 775,15);
+  circle(bunnyX + 15, 775,15);
   circle(bunnyX, 795,5);
   fill("hotpink");
-  triangle(bunnyX-5,780, bunnyX,790, bunnyX + 5,780);
+  triangle(bunnyX-5, 780, bunnyX, 790, bunnyX + 5, 780);
 }
 
 //character is gonna be a bunny that moves with the L and R arrows
+//acheived!
 
 //BACKROUND DRAWING CHARACTERISTICS (i cant spell)
 
+
+
+//SIGNATURE PORTION
+function drawName(){
+  fill("black");
+  textSize(15);
+  textAlign(CENTER,CENTER);
+  text("Sophia", 50, height - 20);
+
+}
