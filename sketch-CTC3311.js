@@ -14,7 +14,7 @@ let bunnyX = 200;
 let sunColour = "yellow";
 
 // ----------------------- FUNCTION SETUPS----------------------------------
-async function setup() {
+ function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 //plan- first bg will be a normal sunny day.
@@ -96,7 +96,7 @@ function drawSun(){
 function drawGrass(){
   fill("green");
   noStroke();
-  rect(0, 870,windowWidth,300);
+  rect(0, height -100 ,width, 100);
 
 }
 
@@ -156,8 +156,6 @@ function drawBunny(){
   triangle(bunnyX-5, 780, bunnyX, 790, bunnyX + 5, 780);
 }
 
-//character is gonna be a bunny that moves with the L and R arrows
-//acheived!
 
 //BACKROUND DRAWING CHARACTERISTICS (i cant spell)
 
@@ -166,6 +164,8 @@ function drawBunny(){
 function drawName(){
   fill("black");
   textSize(15);
-  textAlign(LEFT,BOTTOM);
-  text("Sophia", 30, 855);
+  textAlign(CENTER, CENTER);
+  text("Sophia", width/2, height/2);
 }
+
+// IT WAS WORKING BEFORE WAAAAH
