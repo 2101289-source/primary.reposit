@@ -1,18 +1,17 @@
 //Interactive Scene Assignment!
 //Sophia Eruero
 //Date Start: 09/21/26
-//Date Finish: 
+//Date Finish: 10/04/26
 
-//an interactive scene where user
-//can change the backround 
-//and the colour of the sun
-//and interact with a character.
+//An interactive scene where user
+//can change the backgrounds,
+//change the colour of the sun,
+//and control the movment of a character.
 
-
-
-
-
-// --------------MAIN INSTRUCTIONS---------------------
+// --------------INSTRUCTIONS---------------------
+// Drag mouse to sun and click on sun with LEFT mouse button to trigger a colour switch
+//Use left and right arrow keys to move bunny
+//Click CENTER mouse button to switch between backgrounds.
 
 
 
@@ -21,7 +20,8 @@ let bunnyX = 200;
 let sunColour = "yellow";
 let currentBack = 0;
 
-// ----------------------- FUNCTION SETUPS----------------------------------
+
+// -----------------------SETUPS AND CONTROL----------------------------------
  function setup() {
   createCanvas(windowWidth, windowHeight);
 }
@@ -53,33 +53,29 @@ function bunnyMove(){
 function mousePressed(){ //this will change the suns colour
                         //and the backroundz
                     
-  if(mouseButton.center){
-    currentBack = (currentBack +1) % 4;
+  if(mouseButton.center){ //center click trigger
+    currentBack = (currentBack +1) % 4; //loops and restraints to 3
   }
 
   else if(mouseButton.left){
   let d = dist(mouseX, mouseY, 0, 0);
 
-  if(d < 250){
+  if(d < 250){ //if mouse is within the suns radius, you may switch its colour.
     if(sunColour === "yellow"){
-      sunColour = "gold";
+      sunColour = "gold"; // meant for the golden hour background
      }
     else if(sunColour === "gold"){
-      sunColour = "orange";
+      sunColour = "orange"; //meant for the sunset background
   }
-    else if(sunColour === "orange"){
-      sunColour = "white";
-        }
     else{
-      sunColour = "yellow";
+      sunColour = "yellow"; //meant for the main backround
     }
-  } //four sun colour options for
-  //three different backrounds:
-  //main, golden hour, sunset, and moon!
+  } //three sun colour options for
+  //three different backrounds.
+  // A moon is automatically drawn with mouseButton.center() in the nightSky switch.
 
 }
 }
-
 
 // -------------- MAIN DRAWING ----------------
 function draw() {
@@ -88,13 +84,13 @@ function draw() {
     background("skyblue");
   }
   else if(currentBack === 1){
-    background("goldenrod");
+    goldenHour();
   }
   else if(currentBack === 2){
-    background("pink");
+    sunSet();
   }
   else if (currentBack === 3){
-    background("navy");
+    nightSky() ; 
   }
 
   drawSun();
@@ -105,12 +101,27 @@ function draw() {
   drawName();
 }
 
-// -------------- MAIN  DRAW FUNCTIONS ------------------
+// -------------- MAIN CODE AND FUNCTIONS ------------------
 
 //SUN PORTION
 function drawSun(){
+
+  if(currentBack === 3){ //will be a moon for the nightSky bg switch
+    stroke("grey");
+    fill("linen");
+    circle(0,0,500);
+    strokeWeight(5)
+    arc(50, 50, 60, 60, 0, PI);
+    arc(150, 50, 60, 60, 0, PI);
+    fill("grey");
+    noStroke();
+    circle(100,120,20);
+  }
+
+  else{ // will be a sun for the other 3 bg switches
   fill(sunColour);
   stroke("black");
+  strokeWeight(1);
   circle(0,0,500);
   //suns rays
   fill(sunColour);
@@ -127,13 +138,13 @@ function drawSun(){
   stroke("black");
   noStroke();
 }
-
+}
 
 //GRASS PORTION
 function drawGrass(){
   fill("green");
   noStroke();
-  rect(0, height -100 ,width, 100);
+  rect(0, height -100 ,width, 100); //allows grass to adjust to different screen sizes
 
 }
 
@@ -166,14 +177,15 @@ function drawClouds(){
   circle(935,105,60);
   circle(890,105,60);
 
-  //cloud movement code goes here..?
-  //once again out of time, clouds will stay stationary
 }
 
 // BUNNY CHARACTER PORTION
 function drawBunny(){
   let bY = height - 120; //bY = bunnyY
+                        //allows bunny to adjust to different screen sizes
+
   //ears
+  strokeWeight(1); // gets rid of strokeWeight(5) bug during nightsky switch
   fill("white");
   stroke("gray");
   ellipse(bunnyX - 20, bY - 35,40,100);
@@ -192,25 +204,109 @@ function drawBunny(){
   circle(bunnyX, bY + 15,5);
   fill("hotpink");
   triangle(bunnyX-5, bY, bunnyX, bY +10, bunnyX + 5, bY);
+
 }
+
 
 //-------------------BACKROUNDS------------------------
 
+// --------------------------THE GOLDEN HOUR
 function goldenHour(){
+  noStroke();
+  //two main colours
+  let colourTop = color(255,220,0);
+  let colourBottom = color(255,102,13);
+//four lerp colours
+  let interA = lerpColor(colourTop, colourBottom, 0.33);
+  let interB = lerpColor(colourTop, colourBottom,0.44);
+  let interC = lerpColor(colourTop, colourBottom,0.66);
+  let interD = lerpColor(colourTop, colourBottom, 0.88)
 
+  let h = height / 6.5; //allows rectangles to be manipulated
+  fill(colourTop);
+  rect(0,0,width,h);
+
+  fill(interA);
+  rect(0,h,width,h);
+
+  fill(interB);
+  rect(0,h*2,width,h);
+
+  fill(interC);
+  rect(0,h*3,width,h);
+
+  fill(interD);
+  rect(0,h*4,width,h);
+
+  fill(colourBottom);
+  rect(0,h*5,width,h);
   }
 
+// --------------------------------THE SUNSET
+  function sunSet(){
+  noStroke();
+  //two main colours
+  let colourTop = color(255,37,135);
+  let colourBottom = color(255,109,15);
+//four lerp colours
+  let interA = lerpColor(colourTop, colourBottom, 0.33);
+  let interB = lerpColor(colourTop, colourBottom,0.44);
+  let interC = lerpColor(colourTop, colourBottom,0.66);
+  let interD = lerpColor(colourTop, colourBottom, 0.88)
 
+  let h = height / 6.5; 
+  fill(colourTop);
+  rect(0,0,width,h);
 
+  fill(interA);
+  rect(0,h,width,h);
 
+  fill(interB);
+  rect(0,h*2,width,h);
 
+  fill(interC);
+  rect(0,h*3,width,h);
 
-// BACKROUND SWITCH FUNCTION
+  fill(interD);
+  rect(0,h*4,width,h);
 
+  fill(colourBottom);
+  rect(0,h*5,width,h);
+  }
 
+  // ------------------------THE NIGHT SKY
+function nightSky(){
+  noStroke();
+  //two main colours
+  let colourTop = color(5,1,122);
+  let colourBottom = color(129,33,145);
+//four lerp colours
+  let interA = lerpColor(colourTop, colourBottom, 0.33);
+  let interB = lerpColor(colourTop, colourBottom,0.44);
+  let interC = lerpColor(colourTop, colourBottom,0.66);
+  let interD = lerpColor(colourTop, colourBottom, 0.88)
 
+  let h = height / 6.5; 
+  fill(colourTop);
+  rect(0,0,width,h);
 
+  fill(interA);
+  rect(0,h,width,h);
 
+  fill(interB);
+  rect(0,h*2,width,h);
+
+  fill(interC);
+  rect(0,h*3,width,h);
+
+  fill(interD);
+  rect(0,h*4,width,h);
+
+  fill(colourBottom);
+  rect(0,h*5,width,h);
+
+}
+// ---------------end of main-------------------
 
 //SIGNATURE PORTION
 function drawName(){
@@ -219,4 +315,4 @@ function drawName(){
   textAlign(LEFT, BOTTOM);
   text("Sophia! <3", 30, height-15);
 }
-
+// WE DID IT YAY!!  
