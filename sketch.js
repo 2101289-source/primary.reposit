@@ -9,25 +9,35 @@
 //and interact with a character.
 
 
+
+
+
+// --------------MAIN INSTRUCTIONS---------------------
+
+
+
 // GLOBAL VARIABLES
 let bunnyX = 200;
 let sunColour = "yellow";
+let currentBack = 0;
 
 // ----------------------- FUNCTION SETUPS----------------------------------
  function setup() {
   createCanvas(windowWidth, windowHeight);
 }
-//plan- first bg will be a normal sunny day.
-//second bg will be a golden hour gradient
-//third bg will be a sunset gradient
+//plan- first bg will be a normal sunny day. (0)
+//second bg will be a golden hour gradient (1)
+//third bg will be a sunset gradient(2)
+//fourth will be a nighttime gradient (3)
+//sun can turn into moon maybe
 
 function bunnyMove(){
   if (keyIsDown(RIGHT_ARROW)){
-    bunnyX += 5;
+    bunnyX += 10;
   }
 
   if (keyIsDown(LEFT_ARROW)){
-    bunnyX -= 5;
+    bunnyX -= 10;
   }
   //WRAP AROUND
   if(bunnyX > width){
@@ -40,17 +50,32 @@ function bunnyMove(){
 
 }
 
-function mousePressed(){
-  if(mouseButton === LEFT){
+function mousePressed(){ //this will change the suns colour
+                        //and the backroundz
+                    
+  if(mouseButton.center){
+    currentBack = (currentBack +1) % 4;
+  }
+
+  else if(mouseButton.left){
+  let d = dist(mouseX, mouseY, 0, 0);
+
+  if(d < 250){
     if(sunColour === "yellow"){
       sunColour = "gold";
      }
     else if(sunColour === "gold"){
       sunColour = "orange";
   }
+    else if(sunColour === "orange"){
+      sunColour = "white";
+        }
     else{
       sunColour = "yellow";
-  }
+    }
+  } //four sun colour options for
+  //three different backrounds:
+  //main, golden hour, sunset, and moon!
 
 }
 }
@@ -58,7 +83,20 @@ function mousePressed(){
 
 // -------------- MAIN DRAWING ----------------
 function draw() {
-  background("skyblue");
+
+  if(currentBack === 0){
+    background("skyblue");
+  }
+  else if(currentBack === 1){
+    background("goldenrod");
+  }
+  else if(currentBack === 2){
+    background("pink");
+  }
+  else if (currentBack === 3){
+    background("navy");
+  }
+
   drawSun();
   drawGrass();
   drawClouds();
@@ -76,7 +114,6 @@ function drawSun(){
   circle(0,0,500);
   //suns rays
   fill(sunColour);
-  stroke("black");
   triangle(250,1,305,40, 235,75);
   triangle(227,105, 260,180, 180,170);
   triangle(175,180, 200,265, 120,220);
@@ -135,40 +172,51 @@ function drawClouds(){
 
 // BUNNY CHARACTER PORTION
 function drawBunny(){
+  let bY = height - 120; //bY = bunnyY
   //ears
   fill("white");
-  stroke("grey");
-  ellipse(bunnyX - 20, 745,40,100);
-  ellipse(bunnyX + 20, 745,40,100);
+  stroke("gray");
+  ellipse(bunnyX - 20, bY - 35,40,100);
+  ellipse(bunnyX + 20, bY - 35,40,100);
   noStroke();
   //body
-  circle(bunnyX, 780, 80);
-  stroke("grey");
-  circle(bunnyX - 41,830,30); //this is the tail
+  circle(bunnyX, bY, 80);
+  stroke("black"); //to see it in the grass
+  circle(bunnyX - 41, bY + 50,30); //this is the tail
   noStroke(); //thats why theres a noStroke() afterwards
-  circle(bunnyX, 835,70); //because its hiding behind the body
+  circle(bunnyX, bY + 55,70); //because its hiding behind the body
   //face
   fill("black");
-  circle(bunnyX - 15, 775,15);
-  circle(bunnyX + 15, 775,15);
-  circle(bunnyX, 795,5);
+  circle(bunnyX - 15, bY-5,15);
+  circle(bunnyX + 15, bY-5,15);
+  circle(bunnyX, bY + 15,5);
   fill("hotpink");
-  triangle(bunnyX-5, 780, bunnyX, 790, bunnyX + 5, 780);
+  triangle(bunnyX-5, bY, bunnyX, bY +10, bunnyX + 5, bY);
 }
 
+//-------------------BACKROUNDS------------------------
 
-//BACKROUND DRAWING CHARACTERISTICS (i cant spell)
+function goldenHour(){
+
+  }
+
+
+
+
+
+
+// BACKROUND SWITCH FUNCTION
+
+
+
+
 
 
 //SIGNATURE PORTION
 function drawName(){
   fill("black");
   textSize(15);
-  textAlign(CENTER, CENTER);
-  text("Sophia", width/2, height/2);
+  textAlign(LEFT, BOTTOM);
+  text("Sophia! <3", 30, height-15);
 }
 
-// IT WAS WORKING BEFORE WAAAAH
-
-// I HAD TWO DIFFERENT SKETCHES WHAT
-//COPY PASTED FROM OTHER SKETCH
