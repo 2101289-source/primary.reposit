@@ -9,7 +9,7 @@ async function setup() {
   createCanvas(windowWidth, windowHeight);
   noLoop(); //TEMPORARY
             //keep until panning feature
-            // noLoop causes to loop one time.
+           // noLoop causes to loop one time.
 }
 
 
