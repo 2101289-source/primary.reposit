@@ -2,6 +2,8 @@
 
 //Global variables
 let rectWidth = 20;
+let hTime = 5; let hSpeed = 0.01;
+let hStart = hTime;
 
 
 async function setup() {
@@ -13,20 +15,22 @@ async function setup() {
 
 
 function keyPressed(){
-  rectWidth ++; //increases  rectangle size
+  rectWidth ++; //increases  rectangle size when any key is pressed
   // what happens to generate terrain if width = 0
   background(220);
+  hTime = hStart;
+  hStart = hSpeed;
   generateTerrain();
   
 }
 function generateTerrain(){
   //using many skinny rectangles 
   //to generate random terrain 
-  for(let x = 0; x<width; x += rectWidth){
+  for(let y = 0; y<height; y += 30){
     //first generate [random] height
-    let h = random(0,height);
-    //will bwcome something like let h = "" noise
-    //BUT change this to use NOISE
+    let h = noise(hTime);
+    h = map(h,0,1,0,height);
+    hTime += hSpeed;
     //draw rectangle now that you have height
     rect(x,height,rectWidth, -h);
 
