@@ -1,5 +1,4 @@
-//Terain starter
-
+//Perlin Terrain Project
 
 //Global variables
 let rectWidth = 20;
