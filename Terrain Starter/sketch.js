@@ -38,3 +38,6 @@ function draw() {
   background(220);
   generateTerrain();
 }
+
+
+//im very lost.
