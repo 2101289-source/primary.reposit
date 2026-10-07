@@ -2,7 +2,7 @@
 
 //Global variables
 let rectWidth = 20;
-let hTime = 5; let hSpeed = 0.01;
+let hTime = 3; let hSpeed = 0.01;
 let hStart = hTime;
 
 
@@ -32,7 +32,7 @@ function generateTerrain(){
     h = map(h,0,1,0,height);
     hTime += hSpeed;
     //draw rectangle now that you have height
-    rect(x,height,rectWidth, -h);
+    rect(y,height,rectWidth, -h);
 
   }
 }
