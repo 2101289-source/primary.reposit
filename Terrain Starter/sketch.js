@@ -25,6 +25,7 @@ function keyPressed(){
 function generateTerrain(){
   //using many skinny rectangles 
   //to generate random terrain 
+  fill("grey");
   for(let y = 0; y<width; y += rectWidth){
     //first generate [random] height
     let h = noise(hTime);
