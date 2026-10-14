@@ -74,3 +74,6 @@ function draw() {
   hStart += panSpeed;
 
 }
+
+//WHATS LEFT
+//calculate the average and  show it with a line
