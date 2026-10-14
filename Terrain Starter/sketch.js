@@ -10,44 +10,43 @@ let hTime = 5; let hSpeed = 0.02;
 let hStart = hTime;
 let panSpeed = 0.01;
 
-async function setup() {
+  function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 
-function keyPressed(){
 
-  if(keyCode === LEFT_ARROW){
-    rectWidth = max(2,rectWidth - 2); //minimum value 2
-                                      // rectWidth - 2 cannot be below 2
-  }
-  else if(keyCode === RIGHT_ARROW){
-    rectWidth += 5;
-  }
-  
-}
 function generateTerrain(){
   //using many skinny rectangles 
   //to generate random terrain 
   fill("grey");
-  for(let y = 0; y<width; y += rectWidth){
+  for(let x = 0; x<width; x += rectWidth){
     //first generate [random] height
     let h = noise(hTime);
     h = map(h,0,1,0,height);
     hTime += hSpeed;
     //draw rectangle now that you have height
-    rect(y,height,rectWidth, -h);
+    rect(x,height,rectWidth, -h);
 
   }
 }
 
 function draw() {
   background(220);
+
+  if(keyIsDown(LEFT_ARROW)){
+    rectWidth = max(1, rectWidth - 0.1 ); //minimum value 1
+                                      // rectWidth - 0.1 cannot be below 1
+  }
+  if(keyIsDown(RIGHT_ARROW)){
+    rectWidth += 0.1; // slow increase
+  }
+  
+
   generateTerrain();
   hTime = hStart;
   hStart += panSpeed;
- 
-}
 
+}
 
 //i had to do a copy paste from the commits again *cries*
