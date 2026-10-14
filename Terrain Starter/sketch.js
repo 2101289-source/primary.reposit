@@ -1,38 +1,40 @@
-//Perlin Terrain Project
+//Perlin Noise Project
+//Sophia
+//Date Start: Oct. 2 2026
+//Date finish:
+
 
 //Global variables
 let rectWidth = 20;
-let hTime = 5; let hSpeed = 0.02;
-let hStart = hTime;
-let panSpeed = 0.01;
+let xTime = 5; let xSpeed = 0.02;
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
+  noLoop(); //TEMPORARY
+            //keep until panning feature
+            // noLoop causes to loop one time.
 }
 
 
 function keyPressed(){
-
-  if(keyCode === LEFT_ARROW){
-    rectWidth = max(2,rectWidth - 2); //minimum value 2
-                                      // rectWidth - 2 cannot be below 2
-  }
-  else if(keyCode === RIGHT_ARROW){
-    rectWidth += 5;
-  }
+  rectWidth++;
+  // what happens to generate terrain if width = 0
+  background(220);
+  generateTerrain();
   
 }
 function generateTerrain(){
+  fill("black");
   //using many skinny rectangles 
   //to generate random terrain 
-  fill("grey");
-  for(let y = 0; y<width; y += rectWidth){
+  for(let x = 0; x<width; x += rectWidth){
     //first generate [random] height
-    let h = noise(hTime);
-    h = map(h,0,1,0,height);
-    hTime += hSpeed;
+    let h = noise(xTime);
+    //will bwcome something like let h = "" noise
+    //BUT change this to use NOISE
     //draw rectangle now that you have height
-    rect(y,height,rectWidth, -h);
+    x = map(x,0,10,width);
+    rect(x,height,rectWidth, -h);
 
   }
 }
@@ -40,10 +42,4 @@ function generateTerrain(){
 function draw() {
   background(220);
   generateTerrain();
-  hTime = hStart;
-  hStart += panSpeed;
- 
 }
-
-
-//im very lost.
