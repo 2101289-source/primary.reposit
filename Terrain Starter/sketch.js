@@ -77,3 +77,5 @@ function draw() {
 
 //WHATS LEFT
 //calculate the average and  show it with a line
+
+//test point
