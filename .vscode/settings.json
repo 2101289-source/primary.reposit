@@ -1,4 +1,7 @@
 {
     "eslint.nodePath": "c:\\Users\\2101289\\.vscode-oss\\extensions\\wmcicompsci.cs30-p5-1.9.7-universal\\node_modules",
     "liveServer.settings.port": 5501
+=======
+    "liveServer.settings.port": 5503
+>>>>>>> 16df218d43ccd79d880d322e58d25129dad9bcc6
 }
