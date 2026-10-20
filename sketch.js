@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Boook classs
 
 
@@ -50,7 +49,6 @@ function draw() {
 
   }
 }
-=======
 //Interactive Scene Assignment!
 //Sophia Eruero
 //Date Start: 09/21/26
@@ -369,4 +367,3 @@ function drawName(){
   text("Sophia! <3", 30, height-15);
 }
 // WE DID IT YAY!!  
->>>>>>> 16df218d43ccd79d880d322e58d25129dad9bcc6
