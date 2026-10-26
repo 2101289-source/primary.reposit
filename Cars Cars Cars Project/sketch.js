@@ -11,12 +11,15 @@ let wesbound = [];
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  myCar = new Vehicle(100,height/2 + 40, 0,0,1);
 }
 
 function draw() {
   background(220);
   drawRoad();
-  display();
+  myCar.display();
+  // myCar.changeColor();
 }
 
 
@@ -42,18 +45,55 @@ class Vehicle{
     this.type = type;
     this.direction = direction;
     this.xSpeed = xSpeed;
+    this.c =
+    //the 150,255 makes them pastel hehehe
+
+    this.changeColor();
 
   }    
   
   display(){
-    if(this.type === 0){
+    if (random(1) < 0.01){ //colour flash!
+      this.changeColor();
+    }
+
+    if(this.type === 0){ //car display
+      //car body
+      fill(this.c);
+      noStroke();
       rect(this.x, this.y,60,30);
-      fill("pink");
-      rect(this.x - 15, this.y +16,12,6);
-      rect(this.x +15, this.y +16,12,6);
+
+      //wheels
+      fill("white");
+      rect(this.x - 2, this.y +35 ,15,8);
+      rect(this.x - 2, this.y -12 ,15,8);
+      rect(this.x +40, this.y +35 ,15,8);
+      rect(this.x +40, this.y -12 ,15,8);
+
     }
   }
 
+
+  move(){
+
+  }
+
+  speedUp(){
+
+  }
+  speedDown(){
+
+  }
+
+  changeColor(){
+    this.c = color(random(150, 255), random(150,255), random(150,255));
+
+
+  }
+
+  action(){
+
+  }
 }
 
 
