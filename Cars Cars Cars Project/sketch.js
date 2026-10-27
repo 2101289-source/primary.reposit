@@ -45,7 +45,7 @@ class Vehicle{
     this.type = type;
     this.direction = direction;
     this.xSpeed = xSpeed;
-    this.c =
+    this.c = c;
     //the 150,255 makes them pastel hehehe
 
     this.changeColor();
@@ -69,8 +69,18 @@ class Vehicle{
       rect(this.x - 2, this.y -12 ,15,8);
       rect(this.x +40, this.y +35 ,15,8);
       rect(this.x +40, this.y -12 ,15,8);
-
     }
+
+
+
+    if(this.type === 1){
+      //truck body
+      fill(this.c);
+      noStroke();
+      rect(this.x -10, this.y- 10, 60,30); 
+    }
+
+
   }
 
 
