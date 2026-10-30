@@ -20,6 +20,7 @@ function draw() {
   drawRoad();
   myCar.display();
   // myCar.changeColor();
+  move();
 }
 
 
@@ -85,6 +86,8 @@ class Vehicle{
 
 
   move(){
+
+    this.xSpeed += 1;
 
   }
 
