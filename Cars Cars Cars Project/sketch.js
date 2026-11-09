@@ -12,15 +12,15 @@ let wesbound = [];
 async function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  myCar = new Vehicle(100,height/2 + 40, 0,0,1);
+  myCar = new Vehicle(100,height/2 + 40, 0,1,2, 0);
 }
 
 function draw() {
   background(220);
   drawRoad();
+  myCar.move();
   myCar.display();
   // myCar.changeColor();
-  move();
 }
 
 
@@ -41,7 +41,7 @@ function drawRoad(){
 
 class Vehicle{
 
-  constructor(x,y,c,type, direction,xSpeed ){
+  constructor(x,y,type, direction,xSpeed,c ){
     this.x = x; this.y = y; this.c = c;
     this.type = type;
     this.direction = direction;
@@ -84,10 +84,18 @@ class Vehicle{
 
   }
 
-
   move(){
 
-    this.xSpeed += 1;
+    this.x += this.xSpeed; //update position by speed
+
+    //wrap
+    if(this.x> width){
+      this.x = -60;
+    }
+    else if(this.x < -60){
+      this.x = width; //
+    }
+
 
   }
 
@@ -121,6 +129,8 @@ class TrafficLight{
 //to do list:
 //define the contructors of the viehcle class
 
+//test comment 2.000
 
-//next quiz will be objects and transformations just a note
+//reepository error has happened again.
 
+//OKKK WE GOT IT BACK
