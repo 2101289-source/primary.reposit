@@ -8,19 +8,38 @@
 
 let eastbound = [];
 let wesbound = [];
+let trafficLight;
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
-
   myCar = new Vehicle(100,height/2 + 40, 0,1,2, 0);
-}
+
+  for (let i = 0; i < 20; i++) {
+    let x = random(width);
+    let y = random(height / 4 + 20, height / 2 - 40);
+    westbound.push(new Vehicle(x, y, floor(random(2)), 0, random(-5, -1)));
+  }
+
+
+  for (let i = 0; i < 20; i++) {
+    let x = random(width);
+    let y = random(height / 2 + 20, height * 0.75 - 40);
+    eastbound.push(new Vehicle(x, y, floor(random(2)), 1, random(1, 5)));
+  }
+
+  }
+
 
 function draw() {
   background(220);
   drawRoad();
-  myCar.move();
-  myCar.display();
-  // myCar.changeColor();
+  for (let i = 0; i < westbound.length; i++) {
+    westbound[i].action();
+  }
+
+  for (let i = 0; i < eastbound.length; i++) {
+    eastbound[i].action();
+  }
 }
 
 
@@ -100,9 +119,19 @@ class Vehicle{
   }
 
   speedUp(){
+    if (this.direction === 1) {
+      this.xSpeed = min(15, this.xSpeed + 0.5);
+    } else {
+      this.xSpeed = max(-15, this.xSpeed - 0.5);
+    }
 
   }
   speedDown(){
+    if (this.direction === 1) {
+      this.xSpeed = max(0, this.xSpeed - 0.5);
+    } else {
+      this.xSpeed = min(0, this.xSpeed + 0.5);
+    }
 
   }
 
@@ -113,9 +142,23 @@ class Vehicle{
   }
 
   action(){
+    this.move();
+
+    // 1% chance per frame (random(1) < 0.01)
+    if (random(1) < 0.01) {
+      this.speedUp();
+    }
+    if (random(1) < 0.01) {
+      this.speedDown();
+    }
+    if (random(1) < 0.01) {
+      this.changeColor();
+    }
+
+    this.display();
+  }
 
   }
-}
 
 
 
@@ -128,12 +171,3 @@ class TrafficLight{
 
 //to do list:
 //define the contructors of the viehcle class
-
-//test comment 2.000
-
-//reepository error has happened again.
-
-//OKKK WE GOT IT BACK
-
-
-//test...?
