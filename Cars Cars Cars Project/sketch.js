@@ -4,32 +4,41 @@
 //Date Finish:
 
 
-//Variables
-
+// GLOBAL Variables
 let eastbound = [];
-let wesbound = [];
+let westbound = [];
 let trafficLight;
 
+// ------------- SETUP --------------------
 async function setup() {
   createCanvas(windowWidth, windowHeight);
   myCar = new Vehicle(100,height/2 + 40, 0,1,2, 0);
 
+  // SETUP variables
+  let westLanes = [height * 0.30, height * 0.42];
+  let eastLanes = [height * 0.56, height * 0.67];
+
+
+
+  //WESTBOUND NEGATIVE SPEEDS
   for (let i = 0; i < 20; i++) {
     let x = random(width);
-    let y = random(height / 4 + 20, height / 2 - 40);
-    westbound.push(new Vehicle(x, y, floor(random(2)), 0, random(-5, -1)));
+    let y = random(westLanes);
+    let type = random([0,1]);
+    westbound.push(new Vehicle(x, y, type, 0, random(-9, -2)));
   }
 
-
+  //EASTBOUND POSITIVE SPEEDS
   for (let i = 0; i < 20; i++) {
     let x = random(width);
-    let y = random(height / 2 + 20, height * 0.75 - 40);
-    eastbound.push(new Vehicle(x, y, floor(random(2)), 1, random(1, 5)));
+    let y = random(eastLanes);
+    let type = random([0,1]);
+    eastbound.push(new Vehicle(x, y,type, 1, random(2, 5)));
   }
 
-  }
+}
 
-
+// ----------------------- DRAWING FUNCTIONS ----------------------
 function draw() {
   background(220);
   drawRoad();
@@ -42,8 +51,6 @@ function draw() {
   }
 }
 
-
-
 function drawRoad(){
   fill("black");
   noStroke();
@@ -51,12 +58,14 @@ function drawRoad(){
   fill("gold");//gold is used for realism and
   stroke("gold"); // represents two way traffic
   strokeWeight(4);
-  for(let i = 0; i < width; i++){ //dashes will be drawn
-    //until they reach width of the screen
+
+  //lane dashes across width of the screen
+  for(let i = 0; i < width; i++){
     rect(width/142 + (i * 80),height/2,40,2);
   }
 }
 
+// ------------- CLASS VEHICLE --------------------------------------
 
 class Vehicle{
 
@@ -66,12 +75,12 @@ class Vehicle{
     this.direction = direction;
     this.xSpeed = xSpeed;
     this.c = c;
-    //the 150,255 makes them pastel hehehe
-
     this.changeColor();
 
   }    
   
+
+  // ------ MAIN DISPLAY -----------
   display(){
     if (random(1) < 0.01){ //colour flash!
       this.changeColor();
@@ -92,22 +101,33 @@ class Vehicle{
     }
 
 
-
     if(this.type === 1){
       //truck body
       fill(this.c);
       noStroke();
       rect(this.x -10, this.y- 10, 60,30); 
+
+
+      //FRONT OF TRUCK & DIRECTION CASES
+      //for eastbound
+      if (this.direction === 1){
+        rect(this.x +53, this.y- 15, 10,40);
+      //first argument creates the small gap
+      }
+      //for westbound
+      else{
+        rect(this.x - 23, this.y - 15, 10,40);
+      }
+  
     }
 
 
   }
 
   move(){
-
     this.x += this.xSpeed; //update position by speed
 
-    //wrap
+    //wrap!
     if(this.x> width){
       this.x = -60;
     }
@@ -117,7 +137,6 @@ class Vehicle{
 
 
   }
-
   speedUp(){
     if (this.direction === 1) {
       this.xSpeed = min(15, this.xSpeed + 0.5);
@@ -134,13 +153,11 @@ class Vehicle{
     }
 
   }
-
   changeColor(){
-    this.c = color(random(150, 255), random(150,255), random(150,255));
-
+    this.c = color(random(100,255), random(60,255), random(100,255));
+    //100,255 makes the colours more pastel hehe
 
   }
-
   action(){
     this.move();
 
@@ -158,9 +175,7 @@ class Vehicle{
     this.display();
   }
 
-  }
-
-
+}
 
 
 class TrafficLight{
@@ -170,4 +185,4 @@ class TrafficLight{
 
 
 //to do list:
-//define the contructors of the viehcle class
+//make the  trucks face the proper way in westbound
