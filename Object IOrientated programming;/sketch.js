@@ -1,0 +1,52 @@
+// Global Variables
+let myBook; //can't INIT objects here...
+
+async function setup() {
+  createCanvas(windowWidth, windowHeight);
+  //create a single book
+  myBook = new Book("CS30 Text", "Mr. Scott", 
+    1234567891011, "leatherbound", 500, width*0.3);
+}
+
+function draw() {
+  background(220);
+  myBook.display();
+}
+
+// Classes are nicely organized into the bottom of 
+// our file, or perhaps their own file...
+
+class Book{
+  //1. constructor
+  constructor(title, author, isbn, cover, pages, x){
+    this.title = title;
+    this.author = author;
+    this.isbn = isbn;
+    this.cover = cover;
+    this.pages = pages;
+    this.x = x;
+  }
+
+  // 2. class functions
+  // inside a class, we omit the "function" keyword
+  display(){
+    //render our book object on the Canvas
+    rectMode(CENTER);  textAlign(CENTER, CENTER);
+    textSize(20);
+
+    //set fill color based on coverType (H, S, L)
+    switch( this.cover ){
+      case "softcover":
+        fill(220,220,0);  break;
+      case "hardcover":
+        fill(100, 255, 255);   break;
+      case "leatherbound":
+        fill(150, 0, 150);    break;
+    }
+
+    //finally, draw the book spine
+    rect(this.x, height/2, this.pages/10, 150);
+    fill(255);
+    text(this.title[0], this.x, height/2+50);
+  }
+}
