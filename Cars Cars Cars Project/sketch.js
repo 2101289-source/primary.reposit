@@ -9,7 +9,7 @@ let eastbound = [];
 let westbound = [];
 let trafficLight;
 
-// ------------- SETUP --------------------
+// ---------------- SETUP --------------------
 async function setup() {
   createCanvas(windowWidth, windowHeight);
   myCar = new Vehicle(100,height/2 + 40, 0,1,2, 0);
