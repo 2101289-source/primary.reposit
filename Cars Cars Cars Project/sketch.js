@@ -25,7 +25,7 @@ async function setup() {
     let x = random(width);
     let y = random(westLanes);
     let type = random([0,1]);
-    westbound.push(new Vehicle(x, y, type, 0, random(-9, -2)));
+    westbound.push(new Vehicle(x, y, type, 0, random(-5,-2)));
   }
 
   //EASTBOUND POSITIVE SPEEDS
@@ -33,7 +33,7 @@ async function setup() {
     let x = random(width);
     let y = random(eastLanes);
     let type = random([0,1]);
-    eastbound.push(new Vehicle(x, y,type, 1, random(2, 5)));
+    eastbound.push(new Vehicle(x, y,type, 1, random(2,5)));
   }
 
 }
@@ -185,4 +185,5 @@ class TrafficLight{
 
 
 //to do list:
-//make the  trucks face the proper way in westbound
+// speed detection
+//traffic light feature only we are so tired.
