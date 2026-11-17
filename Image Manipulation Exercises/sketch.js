@@ -16,8 +16,16 @@ async function setup() {
 
 }
 
+// --------- IMAGE DISPLAY AND FUNCTION CALLS ---------
 function draw() {
   background(220);
+
+  let spacing = (width-300)/3;
+
+  image(chip, 0, height/2, 300,300);
+  image(hand, spacing ,height/2,300,300);
+  image(night, spacing * 2,height/2,300,300);
+  image(race, width -300 ,height/2,300,300);
 
   majorityColour();
   noGreen();
@@ -25,30 +33,34 @@ function draw() {
   mirrorH();
 }
 
-
-
+// --------- MANIPULATION FUNCTIONS -------------
+ 
 function majorityColour(){
-  image(chip, 0, height/2, 300,300);
+  chip.loadPixels();
+
 
 }
-
 
 function noGreen(){
-  image(hand, 300,height/2,300,300);
+  hand.loadPixels();
 
+  
+
+  
 
 }
-
 
 function five(){
-  image(night, 600,height/2,300,300);
+  night.loadPixels();
+
 
 
 }
 
-
 function mirrorH(){
-  image(race, 900,height/2,300,300);
+  race.loadPixels();
 
+
+  
 
 }
