@@ -1,7 +1,7 @@
 // Image Manipulation Exercises
 // Sophia
-// 11/16/2026
-//
+// Date Start: 11/16/2026
+//Date finish: 
 
 async function loadAssets(){
   chip = await loadImage("assets/chip.jpg");
@@ -21,11 +21,12 @@ function draw() {
   background(220);
 
   let spacing = (width-300)/3;
+  //this is done to space out the images nicely
 
   image(chip, 0, height/2, 300,300);
-  image(hand, spacing ,height/2,300,300);
+  image(race, spacing ,height/2,300,300);
   image(night, spacing * 2,height/2,300,300);
-  image(race, width -300 ,height/2,300,300);
+  image(hand, width -300 ,height/2,300,300);
 
   majorityColour();
   noGreen();
@@ -37,12 +38,39 @@ function draw() {
  
 function majorityColour(){
   chip.loadPixels();
+  for(let i = 0; i < chip.pixels.length; i += 4 ){
+    let r = chip.pixels[i];
+    let g = chip.pixels[i + 1];
+    let b = chip.pixels[i + 2];
+    
+    //Pure red
+    if(r >= g && r >= b){
+      chip.pixels[i] = 255;
+      chip.pixels[i+1] = 0;
+      chip.pixels[i + 2] = 0;
+    }
+    //Pure green
+    else if(g >= r && g >= b){
+      chip.pixels[i]= 0;
+      chip.pixels[i+ 1] = 255;
+      chip.pixels[i + 2] = 0;
+    }
 
+    //Pure blue
+    else{
+      chip.pixels[i] = 0;
+      chip.pixels[i+1] = 0;
+      chip.pixels[i+2] = 255;
+    }
+  }
+
+
+  chip.updatePixels();
 
 }
 
 function noGreen(){
-  hand.loadPixels();
+  race.loadPixels();
 
   
 
@@ -58,7 +86,7 @@ function five(){
 }
 
 function mirrorH(){
-  race.loadPixels();
+  hand.loadPixels();
 
 
   
