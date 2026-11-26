@@ -63,25 +63,72 @@ function majorityColour(){
       chip.pixels[i+2] = 255;
     }
   }
-
-
   chip.updatePixels();
-
 }
+
+
 
 function noGreen(){
   race.loadPixels();
-
-  
-
-  
-
+  for(let y = 0; y < race.height; y++){
+    for(let x = 0; x < race.width; x++){
+      if(x >= race.width/2){
+        let i = ( x + y * race.width) * 4;
+        race.pixels[i+1] = 0; //sets green to zero
+      }
+    }
+  } 
+  race.updatePixels();
 }
+
+
 
 function five(){
   night.loadPixels();
+  for(let i = 0; i < night.pixels.length; i+=4){
+    let r= night.pixels[i]; 
+    let g = night.pixels[i+1];
+    let b = night.pixels[i+2];
 
 
+    let avg = (r + g + b)/ 3;
+    
+    // 255/5
+    if(avg < 51){
+      night.pixels[i] = 168;
+      night.pixels[i+ 1] = 2;
+      night.pixels[i + 2] = 130;
+    }
+     
+    // 51 *2
+    else if (avg < 102){
+      night.pixels[i] = 240;
+      night.pixels[i + 1] = 45;
+      night.pixels[i + 2] = 195;
+    }
+   
+    //51 * 3
+    else if( avg < 153){
+      night.pixels[i] = 255;
+      night.pixels[i + 1] = 138;
+      night.pixels[i + 2] = 213;
+    }
+    
+    //51 * 4
+    else if (avg < 204){
+      night.pixels[i] = 250;
+      night.pixels[i + 1] = 190;
+      night.pixels[i + 2] = 229;
+    }
+    else{
+      night.pixels[i] = 255;
+      night.pixels[i + 1] = 218;
+      night.pixels[i + 2] = 242;
+    }
+
+  }
+
+  night.updatePixels();
 
 }
 
