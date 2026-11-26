@@ -1,7 +1,7 @@
 // Image Manipulation Exercises
 // Sophia
 // Date Start: 11/16/2026
-//Date finish: 
+//Date finish: 11/
 
 async function loadAssets(){
   chip = await loadImage("assets/chip.jpg");
@@ -14,6 +14,14 @@ async function setup() {
   await loadAssets();
   createCanvas(windowWidth, windowHeight);
 
+  majorityColour();
+  noGreen();
+  five();
+  mirrorH();
+
+
+
+
 }
 
 // --------- IMAGE DISPLAY AND FUNCTION CALLS ---------
@@ -22,19 +30,19 @@ function draw() {
 
   let spacing = (width-300)/3;
   //this is done to space out the images nicely
-
   image(chip, 0, height/2, 300,300);
   image(race, spacing ,height/2,300,300);
   image(night, spacing * 2,height/2,300,300);
   image(hand, width -300 ,height/2,300,300);
 
-  majorityColour();
-  noGreen();
-  five();
-  mirrorH();
+
 }
 
 // --------- MANIPULATION FUNCTIONS -------------
+
+
+
+// --------- FUNCTION MAJORITY COLOUR -----------
  
 function majorityColour(){
   chip.loadPixels();
@@ -67,7 +75,7 @@ function majorityColour(){
 }
 
 
-
+// ------- FUNCTION NOGREEN ----------
 function noGreen(){
   race.loadPixels();
   for(let y = 0; y < race.height; y++){
@@ -82,7 +90,7 @@ function noGreen(){
 }
 
 
-
+// ------- FUNCTION FIVE ----------
 function five(){
   night.loadPixels();
   for(let i = 0; i < night.pixels.length; i+=4){
@@ -132,10 +140,20 @@ function five(){
 
 }
 
+// ------ FUNCTION HORIZONTAL MIRROR ---------
 function mirrorH(){
   hand.loadPixels();
 
+  for (let y = 0; y < hand.height; y++){
+    for (let x = floor(hand.width / 2); x < hand.width; x++){
+      let right = (x + y * hand.width) * 4;
+      let left = ((hand.width - x) + y * hand.width) *4;
 
-  
+      hand.pixels[left] = hand.pixels[right];
+      hand.pixels[left + 1] = hand.pixels[right + 1];
+      hand.pixels[left + 2] = hand.pixels[right + 2];
+    }
+  }
+hand.updatePixels();
 
 }
